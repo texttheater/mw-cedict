@@ -11,7 +11,7 @@ Requirements
 
 * A Unix-like system with standard tools (Make, wget usw.)
 * [SWI-Prolog](http://www.swi-prolog.org/) 6.3 or higher
-* [pinyin](https://github.com/texttheater.pinyin/)
+* [pinyin](https://github.com/texttheater/pinyin/)
 * Python 2.7
 * [mwclient](https://github.com/mwclient/mwclient)
 * API write access to a [MediaWiki](https://www.mediawiki.org/) instance
