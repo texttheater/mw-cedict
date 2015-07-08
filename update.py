@@ -14,7 +14,7 @@ except ValueError:
     print('Usage: python update.py cedict.json', file=sys.stderr)
     sys.exit(1)
 
-site = mwclient.Site('texttheater.net', '/wiki/')
+site = mwclient.Site(config.host, config.path)
 site.login(config.username, config.password)
 
 with open(sys.argv[1]) as f:
