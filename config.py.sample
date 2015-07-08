@@ -1,0 +1,4 @@
+host = 'example.com'
+path = '/wiki/'
+username = 'Admin'
+password = '53cr37'
