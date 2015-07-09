@@ -35,7 +35,7 @@ cedict_comment -->
   "#",
   string(_).
 
-cedict_entry(json([traditional=Traditional, simplfied=Simplified, pinyin=Pinyin, explanation=Explanation])) -->
+cedict_entry(json([traditional=Traditional, simplified=Simplified, pinyin=Pinyin, explanation=Explanation])) -->
   nonblanks(TraditionalCodes),
   { atom_codes(Traditional, TraditionalCodes) },
   " ",
