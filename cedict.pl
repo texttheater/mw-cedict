@@ -70,8 +70,9 @@ remove_fives(In, Out) :-
 
 remove_spaces([], []) :-
   !.
-remove_spaces([32, Next|Rest], [Next|Rest]) :-
+remove_spaces([32, Next|Rest0], [Next|Rest]) :-
   unicode_property(Next, category('Ll')), % lower-case letter
-  !.
+  !,
+  remove_spaces(Rest0, Rest).
 remove_spaces([First|Rest0], [First|Rest]) :-
   remove_spaces(Rest0, Rest).
