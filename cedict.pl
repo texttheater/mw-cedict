@@ -1,3 +1,5 @@
+:- encoding(utf8).
+
 :- module(cedict, [
     cedict_read_file/2]).
 
@@ -43,13 +45,26 @@ cedict_entry(json([traditional=Traditional, simplified=Simplified, pinyin=Pinyin
   { atom_codes(Simplified, SimplifiedCodes) },
   " [",
   string_without("]", PinyinCodes0),
-  { remove_spaces(PinyinCodes0, PinyinCodes1),
-    num_dia(PinyinCodes1, PinyinCodes),
+  { decode_ü(PinyinCodes0, PinyinCodes1),
+    remove_fives(PinyinCodes1, PinyinCodes2),
+    remove_spaces(PinyinCodes2, PinyinCodes3),
+    num_dia(PinyinCodes3, PinyinCodes),
     atom_codes(Pinyin, PinyinCodes) },
   "] /",
   string(ExplanationCodes),
   { atom_codes(Explanation, ExplanationCodes) },
   "/".
+
+decode_ü([], []) :-
+  !.
+decode_ü([117, 58|Rest0], [252|Rest]) :-
+  !,
+  decode_ü(Rest0, Rest).
+decode_ü([First|Rest0], [First|Rest]) :-
+  decode_ü(Rest0, Rest).
+
+remove_fives(In, Out) :-
+  exclude('=='(53), In, Out). % 53 = ASCII code of digit 5
 
 remove_spaces([], []) :-
   !.
