@@ -1,4 +1,5 @@
-cedict*.txt
+cedict.txt
+cedict*.txt.gz
 cedict.json
 config.py
 *.pyc
