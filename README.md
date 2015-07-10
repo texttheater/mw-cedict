@@ -9,7 +9,7 @@ e.g. for creating custom vocabulary lists on the wiki.
 Requirements
 ------------
 
-* A Unix-like system with standard tools (Make, wget usw.)
+* A Unix-like system with standard tools (Make, wget etc.)
 * [SWI-Prolog](http://www.swi-prolog.org/) 6.3 or higher
 * [pinyin](https://github.com/texttheater/pinyin/)
 * Python 2.7
