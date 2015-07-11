@@ -53,8 +53,8 @@ cedict_entry(json([traditional=Traditional, simplified=Simplified, pinyin=Pinyin
   "] /",
   string(ExplanationCodes),
   { atom_codes(Explanation, ExplanationCodes) },
-  % TODO Some explanations contain pinyin sections in square brackets, process
-  % these as the pinyin above.
+  % TODO Explanation consists of multiple parts separated by /, parts may
+  % contain cross-references encoded as /[^ []+\[[^]]+/. We should parse that.
   "/".
 
 decode_ü([], []) :-
