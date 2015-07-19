@@ -32,6 +32,9 @@ site = mwclient.Site(config.host, config.path)
 site.login(config.username, config.password)
 
 with open(sys.argv[1]) as f:
+    page = site.Pages['Template:CC-CEDICT attribution']
+    page.save("""\
+The contents of this page are based on dictionary entries from [https://www.mdbg.net/chindict/chindict.php?page=cc-cedict CC-CEDICT] and licensed under a [https://creativecommons.org/licenses/by-sa/3.0/ Creative Commons Attribution-Share Alike 3.0 License].""")
     for entry in json.load(f):
         page = site.Pages[u'CEDICT:{}'.format(entry['simplified'])]
         page.save(u"""\
@@ -43,9 +46,10 @@ with open(sys.argv[1]) as f:
       <td>{}</td>
     </tr>
   </onlyinclude>
-</table>""".format(entry['simplified'], entry['pinyin'],
+</table>
+
+{{{{CC-CEDICT attribution}}}}""".format(entry['simplified'], entry['pinyin'],
             format_explanation(entry['explanation'])), bot=True)
-    # TODO add source and license information
 
 # TODO add templates
 # TODO add CSS?
