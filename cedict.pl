@@ -53,8 +53,6 @@ cedict_entry(json([traditional=Traditional, simplified=Simplified, pinyin=Pinyin
   "] /",
   string(ExplanationCodes),
   { atom_codes(Explanation, ExplanationCodes) },
-  % TODO Explanation consists of multiple parts separated by /, parts may
-  % contain cross-references encoded as /[^ []+\[[^]]+/. We should parse that.
   "/".
 
 decode_ü([], []) :-
