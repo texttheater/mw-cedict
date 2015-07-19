@@ -35,15 +35,15 @@ with open(sys.argv[1]) as f:
     for entry in json.load(f):
         page = site.Pages[u'CEDICT:{}'.format(entry['simplified'])]
         page.save(u"""\
-    <table class="wikitable cedict-entry">
-      <onlyinclude>
-        <tr>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-        </tr>
-      </onlyinclude>
-    </table>""".format(entry['simplified'], entry['pinyin'],
+<table class="wikitable cedict-entry">
+  <onlyinclude>
+    <tr>
+      <td>{}</td>
+      <td>{}</td>
+      <td>{}</td>
+    </tr>
+  </onlyinclude>
+</table>""".format(entry['simplified'], entry['pinyin'],
             format_explanation(entry['explanation'])), bot=True)
     # TODO add source and license information
 
