@@ -66,11 +66,26 @@ decode_ü([First|Rest0], [First|Rest]) :-
 remove_fives(In, Out) :-
   exclude('=='(53), In, Out). % 53 = ASCII code of digit 5
 
+% For unfathomable reasons, the CEDICT format mandates a space between each
+% Pinyin syllable, so does not include orthographic word boundary information.
+% The following stack of hacks attempts to rectify this.
+% Case 1: end of string.
 remove_spaces([], []) :-
   !.
+% Case 2: upper-case letter (Anglicism) followed by space, e.g. "B
+% xíngchāoshēng". Leave the space alone.
+remove_spaces([First, 32|Rest0], [First, 32|Rest]) :-
+  unicode_property(First, category('Lu')),
+  !,
+  remove_spaces(Rest0, Rest).
+% Case 3: space followed by lower-case letter. This is probably not an
+% orthographic word boundary, so we remove it. (If an upper-case letter
+% follows, it's probably a proper name or honorific as in "Máo Zhǔxí", then we
+% keep the space.)
 remove_spaces([32, Next|Rest0], [Next|Rest]) :-
   unicode_property(Next, category('Ll')), % lower-case letter
   !,
   remove_spaces(Rest0, Rest).
+% Case 4: other.
 remove_spaces([First|Rest0], [First|Rest]) :-
   remove_spaces(Rest0, Rest).
