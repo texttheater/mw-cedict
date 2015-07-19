@@ -26,7 +26,9 @@ def format_explanation(explanation):
         reference_text = escape(match.group(1))
         return u'[https://www.mdbg.net/chindict/chindict.php?page=worddict&wdrst=0&wdqb={} {}]'.format(
                 search_string, reference_text)
-    return reference_pattern.sub(reference_match_to_hyperlink, explanation)
+    explanation = explanation.replace('/', ' / ')
+    explanation = reference_pattern.sub(reference_match_to_hyperlink, explanation)
+    return explanation
 
 site = mwclient.Site(config.host, config.path)
 site.login(config.username, config.password)
