@@ -35,7 +35,7 @@ with open(sys.argv[1]) as f:
     for entry in json.load(f):
         page = site.Pages[u'CEDICT:{}'.format(entry['simplified'])]
         page.save(u"""\
-    <table class=cedict-entry>
+    <table class="wikitable cedict-entry">
       <onlyinclude>
         <tr>
           <td>{}</td>
